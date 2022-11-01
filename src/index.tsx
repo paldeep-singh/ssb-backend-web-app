@@ -2,20 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
 
 export default function BasicTextFields() {
   return (
-    <Box
-      component="form"
-      sx={{
-        '& > :not(style)': { m: 1, width: '25ch', },
-      }}
-      noValidate
-      autoComplete="off"
-    >
+    <Grid xs={12} sx={{
+      display: 'flex',
+      justifyContent: 'center',
+    }} >
       <TextField id="standard-basic" label="Email" variant="standard" />
-    </Box>
+
+    </Grid>
   );
 }
 ReactDOM.render( 
