@@ -1,8 +1,7 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
+import "./index.css";
 
 export default function BasicTextFields() {
   return (
@@ -10,6 +9,10 @@ export default function BasicTextFields() {
       display: 'flex',
       justifyContent: 'center',
     }} >
+    
+    <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
       <TextField id="standard-basic" label="Email" variant="standard" />
 
     </Grid>
