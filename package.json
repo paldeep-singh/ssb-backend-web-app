@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack serve --config webpack.config.js --env env=development",
-    "build": "webpack --config webpack.config.js --env env=production"
+    "build": "webpack --config webpack.config.js --env env=production",
+    "lint": "eslint . --ext .tsx"
   },
   "dependencies": {
     "@emotion/react": "^11.9.0",
@@ -29,18 +30,58 @@
     "@babel/runtime": "^7.17.9",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.4",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
     "autoprefixer": "^10.4.13",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
+    "eslint": "^8.26.0",
+    "eslint-plugin-react": "^7.31.10",
     "html-webpack-plugin": "^5.5.0",
     "postcss": "^8.4.18",
     "postcss-loader": "^7.0.1",
+    "prettier": "^2.7.1",
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.2.1",
     "typescript": "^4.6.4",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.9.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/all"
+    ],
+    "rules": {
+      "@typescript-eslint/no-explicit-any": 2,
+      "@typescript-eslint/explicit-function-return-type": 2,
+      "no-console": 2,
+      "no-extra-boolean-cast": 2
+    },
+    "overrides": [
+      {
+        "files": [
+          "*/**/*test.ts"
+        ],
+        "rules": {
+          "@typescript-eslint/explicit-function-return-type": 0
+        }
+      }
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "none",
+    "singleQuote": true,
+    "printWidth": 80
   }
 }
