@@ -1,24 +1,16 @@
-import ReactDOM from 'react-dom';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import "./index.css";
+import ReactDOM from 'react-dom'
+import { FC } from 'react'
+import './index.css'
 
-export default function BasicTextFields() {
+const HELLO_WORLD = 'Hello World'
+
+export const App: FC = () => {
   return (
-    <Grid xs={12} sx={{
-      display: 'flex',
-      justifyContent: 'center',
-    }} >
-    
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-      <TextField id="standard-basic" label="Email" variant="standard" />
+    <div className="flex justify-center">
+      <h1 className="text-3xl font-bold underline">{HELLO_WORLD}</h1>
 
-    </Grid>
-  );
+      <input id="name" type="text" />
+    </div>
+  )
 }
-ReactDOM.render( 
- <BasicTextFields />, 
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'))
