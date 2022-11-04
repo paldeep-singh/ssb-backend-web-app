@@ -2,14 +2,13 @@ import ReactDOM from 'react-dom'
 import { FC } from 'react'
 import './index.css'
 
-const HELLO_WORLD = 'Hello World'
+const EMAIL = 'Email'
 
 export const App: FC = () => {
   return (
-    <div className="flex justify-center">
-      <h1 className="text-3xl font-bold underline">{HELLO_WORLD}</h1>
-
-      <input id="name" type="text" />
+    <div className="space-x-2 pt-6 text-center">
+      <label>{EMAIL}</label>
+      <input name="email" type="text" className="border-purple-700 border-2" />
     </div>
   )
 }
