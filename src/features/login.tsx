@@ -5,17 +5,20 @@ const EMAIL = 'Email'
 const SUBMIT = 'Submit'
 
 const API_URL = process.env.REACT_APP_API_URL ?? ''
+const ADMIN_USER_ACCOUNT_CLAIMED_URL = `${API_URL}/admin-user/claimed`
 
 const LoginScreen: FC = () => {
   const [email, setEmail] = useState('')
 
   const onSubmit = async (): Promise<void> => {
-    const response = await fetch(`${API_URL}/admin-user/claimed`, {
+    await fetch(ADMIN_USER_ACCOUNT_CLAIMED_URL, {
       method: 'POST',
-      body: JSON.stringify({ email })
+      body: JSON.stringify({ email }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors'
     })
-
-    console.log(response)
   }
 
   return (
