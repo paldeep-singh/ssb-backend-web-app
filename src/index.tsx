@@ -1,5 +1,4 @@
 import { createRoot } from 'react-dom/client'
-import { render } from 'react-dom'
 import React from 'react'
 import { FC } from 'react'
 import './index.css'
