@@ -1,40 +1,31 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
+// import { useLocation } from '../utils/navigation'
 import Logo from '../assets/logo.svg'
+import { useLocation } from 'react-router-dom'
 
 const VERIFICATION_CODE = 'Verification code'
 const SUBMIT = 'Submit'
 const LOADING = 'Loading...'
 
 const API_URL = process.env.REACT_APP_API_URL ?? ''
-const ADMIN_REQUEST_VERIFICATION_CODE_URL = `${API_URL}/admin-user/request-verification`
 const ADMIN_VERIFY_EMAIL_URL = `${API_URL}/admin-user/verify-email`
 
-type IEmailVerificationProps = {
-  email: string
-}
+// FIgure out how to type-safe state
+// interface LocationState {
+//   email: string
+// }
 
-const EmailVerificationScreen: FC<IEmailVerificationProps> = ({ email }) => {
-  const [loading, setLoading] = useState(true)
+const EmailVerificationScreen: FC = () => {
+  const [loading, setLoading] = useState(false)
   const [verificationCode, setVerificationCode] = useState('')
 
-  useEffect(() => {
-    const requestVerificationCode = async (): Promise<void> => {
-      await fetch(ADMIN_REQUEST_VERIFICATION_CODE_URL, {
-        method: 'POST',
-        body: JSON.stringify({ email }),
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        mode: 'cors'
-      })
-      setLoading(false)
-    }
+  const location = useLocation()
 
-    requestVerificationCode()
-  })
+  const email = location.state.email
 
   const onSubmit = async (): Promise<void> => {
-    await fetch(ADMIN_VERIFY_EMAIL_URL, {
+    setLoading(true)
+    const response = await fetch(ADMIN_VERIFY_EMAIL_URL, {
       method: 'POST',
       body: JSON.stringify({ email, verificationCode }),
       headers: {
@@ -42,6 +33,17 @@ const EmailVerificationScreen: FC<IEmailVerificationProps> = ({ email }) => {
       },
       mode: 'cors'
     })
+
+    if (response.ok) {
+      // const json = await response.json()
+      // TODO: Go to set password screen
+      // + Set session cookie?
+      // console.log('Email verified!', json)
+    } else {
+      const json = await response.json()
+      alert(json.message)
+    }
+    setLoading(false)
   }
 
   return loading ? (
