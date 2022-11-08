@@ -5,6 +5,7 @@ import './index.css'
 import LoginScreen from './features/login'
 import EmailVerificationScreen from './features/verifyEmail'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { SetPasswordScreen } from './features/setPassword'
 
 export const App: FC = () => {
   const router = createBrowserRouter([
@@ -12,6 +13,10 @@ export const App: FC = () => {
     {
       path: '/verify-email',
       element: <EmailVerificationScreen />
+    },
+    {
+      path: '/set-password',
+      element: <SetPasswordScreen />
     }
   ])
   //   return (
