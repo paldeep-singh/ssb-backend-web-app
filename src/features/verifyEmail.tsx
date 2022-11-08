@@ -1,7 +1,7 @@
 import { FC, useState } from 'react'
 // import { useLocation } from '../utils/navigation'
 import Logo from '../assets/logo.svg'
-import { useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useLocalStorage } from '../utils/useLocalStorage'
 
 const VERIFICATION_CODE = 'Verification code'
@@ -22,6 +22,7 @@ const EmailVerificationScreen: FC = () => {
   const setSession = useLocalStorage('session', null)[1]
 
   const location = useLocation()
+  const navigate = useNavigate()
 
   const email = location.state.email
 
@@ -39,9 +40,7 @@ const EmailVerificationScreen: FC = () => {
     if (response.ok) {
       const json = await response.json()
       setSession(json)
-      // TODO: Go to set password screen
-      // + Set session cookie?
-      // console.log('Email verified!', json)
+      navigate('/set-password')
     } else {
       const json = await response.json()
       alert(json.message)
