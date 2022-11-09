@@ -2,7 +2,7 @@ import { FC, useState } from 'react'
 // import { useLocation } from '../utils/navigation'
 import Logo from '../assets/logo.svg'
 import { useNavigate, useLocation } from 'react-router-dom'
-import Cookie from 'cookie-universal'
+import { storeSessionCookie } from '../utils/sessionCookies'
 const VERIFICATION_CODE = 'Verification code'
 const SUBMIT = 'Submit'
 const LOADING = 'Loading...'
@@ -37,8 +37,7 @@ const EmailVerificationScreen: FC = () => {
 
     if (response.ok) {
       const json = await response.json()
-      const cookies = Cookie()
-      cookies.set('session', json)
+      storeSessionCookie(json)
       navigate('/set-password')
     } else {
       const json = await response.json()

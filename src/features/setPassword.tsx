@@ -14,7 +14,6 @@ const passwordValidationRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/
 export const SetPasswordScreen: FC = () => {
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const cookie = Cookie()
 
   const onSubmit = async (): Promise<void> => {
     if (newPassword !== confirmPassword) {
