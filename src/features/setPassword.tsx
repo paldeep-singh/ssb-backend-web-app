@@ -1,7 +1,7 @@
 import { FC, useState } from 'react'
 import Logo from '../assets/logo.svg'
 import { API_URL } from '../env'
-import Cookie from 'cookie-universal'
+import { getSessionCookie } from '../utils/sessionCookies'
 
 const NEW_PASSWORD = 'New password'
 const CONFIRM_PASSWORD = 'Confirm password'
@@ -13,10 +13,10 @@ const passwordValidationRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/
 
 export const SetPasswordScreen: FC = () => {
   const [newPassword, setNewPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const [confirmNewPassword, setConfirmNewPassword] = useState('')
 
   const onSubmit = async (): Promise<void> => {
-    if (newPassword !== confirmPassword) {
+    if (newPassword !== confirmNewPassword) {
       alert('Passwords do not match')
       return
     }
@@ -25,6 +25,34 @@ export const SetPasswordScreen: FC = () => {
       alert('Password does not meet requirements')
       return
     }
+
+    const session = getSessionCookie()
+
+    if (!session) {
+      // TODO: Go to login screen
+      alert('Session not found')
+      return
+    }
+
+    const setPasswordResponse = await fetch(SET_PASSWORD_API_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        newPassword,
+        confirmNewPassword
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${session.sessionId}`
+      },
+      mode: 'cors'
+    })
+
+    if (setPasswordResponse.ok) {
+      // TODO: success!
+      return
+    }
+
+    alert('Something went wrong :/')
   }
 
   return (
@@ -48,7 +76,7 @@ export const SetPasswordScreen: FC = () => {
           name="verificationCode"
           type="text"
           className="border-purple-700 border-2 ml-2"
-          onChange={(event): void => setConfirmPassword(event.target.value)}
+          onChange={(event): void => setConfirmNewPassword(event.target.value)}
         />
         <button
           className="bg-orange-200 border-4 border-purple-400 p-2 block mx-auto"
