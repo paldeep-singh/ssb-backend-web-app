@@ -1,11 +1,11 @@
 import { FC, useState } from 'react'
 import Logo from '../assets/logo.svg'
 import { useNavigate } from 'react-router-dom'
+import { API_URL } from '../env'
 
 const EMAIL = 'Email'
 const SUBMIT = 'Submit'
 
-const API_URL = process.env.REACT_APP_API_URL ?? ''
 const ADMIN_USER_ACCOUNT_CLAIMED_URL = `${API_URL}/admin-user/claimed`
 const ADMIN_REQUEST_VERIFICATION_CODE_URL = `${API_URL}/admin-user/request-verification`
 

@@ -1,15 +1,20 @@
 import { FC, useState } from 'react'
 import Logo from '../assets/logo.svg'
+import { API_URL } from '../env'
+import Cookie from 'cookie-universal'
 
 const NEW_PASSWORD = 'New password'
 const CONFIRM_PASSWORD = 'Confirm password'
 const SUBMIT = 'Submit'
+
+const SET_PASSWORD_API_URL = `${API_URL}/admin-user/set-password`
 
 const passwordValidationRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/
 
 export const SetPasswordScreen: FC = () => {
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const cookie = Cookie()
 
   const onSubmit = async (): Promise<void> => {
     if (newPassword !== confirmPassword) {
