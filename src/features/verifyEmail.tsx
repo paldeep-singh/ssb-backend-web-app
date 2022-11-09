@@ -2,8 +2,7 @@ import { FC, useState } from 'react'
 // import { useLocation } from '../utils/navigation'
 import Logo from '../assets/logo.svg'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { useLocalStorage } from '../utils/useLocalStorage'
-
+import Cookie from 'cookie-universal'
 const VERIFICATION_CODE = 'Verification code'
 const SUBMIT = 'Submit'
 const LOADING = 'Loading...'
@@ -19,7 +18,6 @@ const ADMIN_VERIFY_EMAIL_URL = `${API_URL}/admin-user/verify-email`
 const EmailVerificationScreen: FC = () => {
   const [loading, setLoading] = useState(false)
   const [verificationCode, setVerificationCode] = useState('')
-  const setSession = useLocalStorage('session', null)[1]
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -39,7 +37,8 @@ const EmailVerificationScreen: FC = () => {
 
     if (response.ok) {
       const json = await response.json()
-      setSession(json)
+      const cookies = Cookie()
+      cookies.set('session', json)
       navigate('/set-password')
     } else {
       const json = await response.json()
