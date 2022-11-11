@@ -42,7 +42,7 @@ export const SetPasswordScreen: FC = () => {
       }),
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `${session.sessionId}`
+        Authorization: `${session.id}`
       },
       mode: 'cors'
     })
