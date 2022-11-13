@@ -3,7 +3,7 @@ import { FC, useState } from 'react'
 import { Logo } from '../components/Logo'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { storeSessionCookie } from '../utils/sessionCookies'
-import { CenterContainer } from '../components'
+import { CenterContainer, VerticalSpacer } from '../components'
 const VERIFICATION_CODE = 'Verification code'
 const SUBMIT = 'Submit'
 const LOADING = 'Loading...'
@@ -54,7 +54,7 @@ const EmailVerificationScreen: FC = () => {
       ) : (
         <>
           <Logo />
-          <div className="space-y-2">
+          <VerticalSpacer spacing="2">
             <p>
               {`We've sent an email containing your verification code to ${email}. ` +
                 `Check your spam folder if you do not see it in your inbox. ` +
@@ -74,7 +74,7 @@ const EmailVerificationScreen: FC = () => {
               onClick={onSubmit}>
               {SUBMIT}
             </button>
-          </div>
+          </VerticalSpacer>
         </>
       )}
     </CenterContainer>

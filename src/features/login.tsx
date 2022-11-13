@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { Logo, CenterContainer } from '../components'
+import { Logo, CenterContainer, VerticalSpacer } from '../components'
 import { useNavigate } from 'react-router-dom'
 import { API_URL } from '../env'
 import { storeSessionCookie } from '../utils/sessionCookies'
@@ -99,7 +99,7 @@ const LoginScreen: FC = () => {
   return (
     <CenterContainer>
       <Logo />
-      <div className="space-y-2">
+      <VerticalSpacer spacing="2">
         <label>{EMAIL}</label>
         <input
           name="email"
@@ -123,7 +123,7 @@ const LoginScreen: FC = () => {
           onClick={accountClaimed ? onSubmitPassword : onSubmitEmail}>
           {SUBMIT}
         </button>
-      </div>
+      </VerticalSpacer>
     </CenterContainer>
   )
 }

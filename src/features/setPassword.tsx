@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Logo, CenterContainer } from '../components'
+import { Logo, CenterContainer, VerticalSpacer } from '../components'
 import { API_URL } from '../env'
 import { getSessionCookie } from '../utils/sessionCookies'
 
@@ -62,7 +62,7 @@ export const SetPasswordScreen: FC = () => {
   return (
     <CenterContainer>
       <Logo />
-      <div className="space-y-2">
+      <VerticalSpacer spacing="2">
         <p>
           {'Your password must be at least 8 characters long and contain an ' +
             'uppercase letter, a lowercase letter, and a number.'}
@@ -87,7 +87,7 @@ export const SetPasswordScreen: FC = () => {
           onClick={onSubmit}>
           {SUBMIT}
         </button>
-      </div>
+      </VerticalSpacer>
     </CenterContainer>
   )
 }
