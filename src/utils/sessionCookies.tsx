@@ -13,15 +13,11 @@ export const storeSessionCookie = (session: unknown): void => {
 }
 
 export const getSessionCookie = (): ISession | null => {
-  const sessionString = cookie.get('session')
-  if (sessionString) {
-    const session = JSON.parse(sessionString)
+  const session = cookie.get('session')
 
-    if (isSession(session)) {
-      return session
-    }
-
-    return null
+  if (isSession(session)) {
+    return session
   }
+
   return null
 }

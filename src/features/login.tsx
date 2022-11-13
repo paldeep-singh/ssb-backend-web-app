@@ -2,7 +2,6 @@ import { FC, useState } from 'react'
 import Logo from '../assets/logo.svg'
 import { useNavigate } from 'react-router-dom'
 import { API_URL } from '../env'
-import { isSession } from '../utils/types'
 import { storeSessionCookie } from '../utils/sessionCookies'
 
 const EMAIL = 'Email'
@@ -81,11 +80,11 @@ const LoginScreen: FC = () => {
       },
       mode: 'cors'
     })
-
     if (loginResponse.ok) {
-      const { session } = await loginResponse.json()
+      const session = await loginResponse.json()
 
       storeSessionCookie(session)
+      alert('Login successful')
       // TODO: navigate to home page
       // navigate('/home')
 
@@ -121,7 +120,7 @@ const LoginScreen: FC = () => {
         )}
         <button
           className="bg-orange-200 border-4 border-purple-400 p-2 block mx-auto"
-          onClick={onSubmitEmail}>
+          onClick={accountClaimed ? onSubmitPassword : onSubmitEmail}>
           {SUBMIT}
         </button>
       </div>

@@ -1,4 +1,5 @@
 import { FC, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Logo from '../assets/logo.svg'
 import { API_URL } from '../env'
 import { getSessionCookie } from '../utils/sessionCookies'
@@ -14,6 +15,7 @@ const passwordValidationRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/
 export const SetPasswordScreen: FC = () => {
   const [newPassword, setNewPassword] = useState('')
   const [confirmNewPassword, setConfirmNewPassword] = useState('')
+  const navigate = useNavigate()
 
   const onSubmit = async (): Promise<void> => {
     if (newPassword !== confirmNewPassword) {
@@ -48,7 +50,9 @@ export const SetPasswordScreen: FC = () => {
     })
 
     if (setPasswordResponse.ok) {
-      // TODO: success!
+      alert('Password set, returning to login page.')
+      navigate('/')
+
       return
     }
 
