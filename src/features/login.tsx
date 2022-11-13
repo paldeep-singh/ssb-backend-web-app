@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { Logo } from '../components/Logo'
+import { Logo, CenterContainer } from '../components'
 import { useNavigate } from 'react-router-dom'
 import { API_URL } from '../env'
 import { storeSessionCookie } from '../utils/sessionCookies'
@@ -97,7 +97,7 @@ const LoginScreen: FC = () => {
   }
 
   return (
-    <div className="space-x-2 pt-6 text-center">
+    <CenterContainer>
       <Logo />
       <div className="space-y-2">
         <label>{EMAIL}</label>
@@ -124,7 +124,7 @@ const LoginScreen: FC = () => {
           {SUBMIT}
         </button>
       </div>
-    </div>
+    </CenterContainer>
   )
 }
 

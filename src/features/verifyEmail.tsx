@@ -3,6 +3,7 @@ import { FC, useState } from 'react'
 import { Logo } from '../components/Logo'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { storeSessionCookie } from '../utils/sessionCookies'
+import { CenterContainer } from '../components'
 const VERIFICATION_CODE = 'Verification code'
 const SUBMIT = 'Submit'
 const LOADING = 'Loading...'
@@ -46,33 +47,37 @@ const EmailVerificationScreen: FC = () => {
     setLoading(false)
   }
 
-  return loading ? (
-    <div className="space-x-2 pt-6 text-center">
-      <h1>{LOADING}</h1>
-    </div>
-  ) : (
-    <div className="space-x-2 pt-6 text-center">
-      <Logo />
-      <div className="space-y-2">
-        <p>
-          {`We've sent an email containing your verification code to ${email}. ` +
-            `Check your spam folder if you do not see it in your inbox. ` +
-            `If you have not received anything, you know who to call.`}
-        </p>
-        <label>{VERIFICATION_CODE}</label>
-        <input
-          name="verificationCode"
-          type="text"
-          className="border-purple-700 border-2 ml-2"
-          onChange={(event): void => setVerificationCode(event.target.value)}
-        />
-        <button
-          className="bg-orange-200 border-4 border-purple-400 p-2 block mx-auto"
-          onClick={onSubmit}>
-          {SUBMIT}
-        </button>
-      </div>
-    </div>
+  return (
+    <CenterContainer>
+      {loading ? (
+        <h1>{LOADING}</h1>
+      ) : (
+        <>
+          <Logo />
+          <div className="space-y-2">
+            <p>
+              {`We've sent an email containing your verification code to ${email}. ` +
+                `Check your spam folder if you do not see it in your inbox. ` +
+                `If you have not received anything, you know who to call.`}
+            </p>
+            <label>{VERIFICATION_CODE}</label>
+            <input
+              name="verificationCode"
+              type="text"
+              className="border-purple-700 border-2 ml-2"
+              onChange={(event): void =>
+                setVerificationCode(event.target.value)
+              }
+            />
+            <button
+              className="bg-orange-200 border-4 border-purple-400 p-2 block mx-auto"
+              onClick={onSubmit}>
+              {SUBMIT}
+            </button>
+          </div>
+        </>
+      )}
+    </CenterContainer>
   )
 }
 

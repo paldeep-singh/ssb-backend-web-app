@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Logo } from '../components/Logo'
+import { Logo, CenterContainer } from '../components'
 import { API_URL } from '../env'
 import { getSessionCookie } from '../utils/sessionCookies'
 
@@ -60,7 +60,7 @@ export const SetPasswordScreen: FC = () => {
   }
 
   return (
-    <div className="space-x-2 pt-6 text-center">
+    <CenterContainer>
       <Logo />
       <div className="space-y-2">
         <p>
@@ -88,6 +88,6 @@ export const SetPasswordScreen: FC = () => {
           {SUBMIT}
         </button>
       </div>
-    </div>
+    </CenterContainer>
   )
 }
