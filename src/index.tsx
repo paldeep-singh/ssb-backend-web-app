@@ -2,10 +2,10 @@ import { createRoot } from 'react-dom/client'
 import React from 'react'
 import { FC } from 'react'
 import './index.css'
-import LoginScreen from './features/login'
-import EmailVerificationScreen from './features/verifyEmail'
+import LoginScreen from './routes/login'
+import EmailVerificationScreen from './routes/verifyEmail'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { SetPasswordScreen } from './features/setPassword'
+import { SetPasswordScreen } from './routes/setPassword'
 
 export const App: FC = () => {
   const router = createBrowserRouter([
