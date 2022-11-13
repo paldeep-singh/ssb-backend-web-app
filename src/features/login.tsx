@@ -1,11 +1,15 @@
 import { FC, useState } from 'react'
-import { Logo, CenterContainer, VerticalSpacer } from '../components'
+import {
+  Logo,
+  CenterContainer,
+  VerticalSpacer,
+  SubmitButton
+} from '../components'
 import { useNavigate } from 'react-router-dom'
 import { API_URL } from '../env'
 import { storeSessionCookie } from '../utils/sessionCookies'
 
 const EMAIL = 'Email'
-const SUBMIT = 'Submit'
 const PASSWORD = 'Password'
 
 const ADMIN_USER_ACCOUNT_CLAIMED_URL = `${API_URL}/admin-user/claimed`
@@ -118,11 +122,9 @@ const LoginScreen: FC = () => {
             />
           </>
         )}
-        <button
-          className="bg-orange-200 border-4 border-purple-400 p-2 block mx-auto"
-          onClick={accountClaimed ? onSubmitPassword : onSubmitEmail}>
-          {SUBMIT}
-        </button>
+        <SubmitButton
+          onSubmit={accountClaimed ? onSubmitPassword : onSubmitEmail}
+        />
       </VerticalSpacer>
     </CenterContainer>
   )

@@ -3,9 +3,9 @@ import { FC, useState } from 'react'
 import { Logo } from '../components/Logo'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { storeSessionCookie } from '../utils/sessionCookies'
-import { CenterContainer, VerticalSpacer } from '../components'
+import { CenterContainer, SubmitButton, VerticalSpacer } from '../components'
+
 const VERIFICATION_CODE = 'Verification code'
-const SUBMIT = 'Submit'
 const LOADING = 'Loading...'
 
 const API_URL = process.env.REACT_APP_API_URL ?? ''
@@ -69,11 +69,7 @@ const EmailVerificationScreen: FC = () => {
                 setVerificationCode(event.target.value)
               }
             />
-            <button
-              className="bg-orange-200 border-4 border-purple-400 p-2 block mx-auto"
-              onClick={onSubmit}>
-              {SUBMIT}
-            </button>
+            <SubmitButton onSubmit={onSubmit} />
           </VerticalSpacer>
         </>
       )}

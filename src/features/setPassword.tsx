@@ -1,12 +1,16 @@
 import { FC, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Logo, CenterContainer, VerticalSpacer } from '../components'
+import {
+  Logo,
+  CenterContainer,
+  VerticalSpacer,
+  SubmitButton
+} from '../components'
 import { API_URL } from '../env'
 import { getSessionCookie } from '../utils/sessionCookies'
 
 const NEW_PASSWORD = 'New password'
 const CONFIRM_PASSWORD = 'Confirm password'
-const SUBMIT = 'Submit'
 
 const SET_PASSWORD_API_URL = `${API_URL}/admin-user/set-password`
 
@@ -82,11 +86,7 @@ export const SetPasswordScreen: FC = () => {
           className="border-purple-700 border-2 ml-2"
           onChange={(event): void => setConfirmNewPassword(event.target.value)}
         />
-        <button
-          className="bg-orange-200 border-4 border-purple-400 p-2 block mx-auto"
-          onClick={onSubmit}>
-          {SUBMIT}
-        </button>
+        <SubmitButton onSubmit={onSubmit} />
       </VerticalSpacer>
     </CenterContainer>
   )
