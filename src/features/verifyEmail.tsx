@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 // import { useLocation } from '../utils/navigation'
-import Logo from '../assets/logo.svg'
+import { Logo } from '../components/Logo'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { storeSessionCookie } from '../utils/sessionCookies'
 const VERIFICATION_CODE = 'Verification code'
@@ -52,7 +52,7 @@ const EmailVerificationScreen: FC = () => {
     </div>
   ) : (
     <div className="space-x-2 pt-6 text-center">
-      <img src={Logo} alt="Logo" className="block mx-auto" />
+      <Logo />
       <div className="space-y-2">
         <p>
           {`We've sent an email containing your verification code to ${email}. ` +

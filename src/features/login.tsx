@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import Logo from '../assets/logo.svg'
+import { Logo } from '../components/Logo'
 import { useNavigate } from 'react-router-dom'
 import { API_URL } from '../env'
 import { storeSessionCookie } from '../utils/sessionCookies'
@@ -98,7 +98,7 @@ const LoginScreen: FC = () => {
 
   return (
     <div className="space-x-2 pt-6 text-center">
-      <img src={Logo} alt="Logo" className="block mx-auto" />
+      <Logo />
       <div className="space-y-2">
         <label>{EMAIL}</label>
         <input
