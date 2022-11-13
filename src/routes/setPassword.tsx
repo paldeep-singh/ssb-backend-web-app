@@ -4,7 +4,8 @@ import {
   Logo,
   CenterContainer,
   VerticalSpacer,
-  SubmitButton
+  SubmitButton,
+  TextInput
 } from '../components'
 import { API_URL } from '../env'
 import { getSessionCookie } from '../utils/sessionCookies'
@@ -35,8 +36,8 @@ export const SetPasswordScreen: FC = () => {
     const session = getSessionCookie()
 
     if (!session) {
-      // TODO: Go to login screen
-      alert('Session not found')
+      alert('Session not found, returning to login page')
+      navigate('/')
       return
     }
 
@@ -72,18 +73,12 @@ export const SetPasswordScreen: FC = () => {
             'uppercase letter, a lowercase letter, and a number.'}
         </p>
 
-        <label>{NEW_PASSWORD}</label>
-        <input
-          name="verificationCode"
-          type="text"
-          className="border-purple-700 border-2 ml-2"
+        <TextInput
+          label={NEW_PASSWORD}
           onChange={(event): void => setNewPassword(event.target.value)}
         />
-        <label>{CONFIRM_PASSWORD}</label>
-        <input
-          name="verificationCode"
-          type="text"
-          className="border-purple-700 border-2 ml-2"
+        <TextInput
+          label={CONFIRM_PASSWORD}
           onChange={(event): void => setConfirmNewPassword(event.target.value)}
         />
         <SubmitButton onSubmit={onSubmit} />

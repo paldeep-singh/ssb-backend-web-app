@@ -3,7 +3,12 @@ import { FC, useState } from 'react'
 import { Logo } from '../components/Logo'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { storeSessionCookie } from '../utils/sessionCookies'
-import { CenterContainer, SubmitButton, VerticalSpacer } from '../components'
+import {
+  CenterContainer,
+  SubmitButton,
+  TextInput,
+  VerticalSpacer
+} from '../components'
 
 const VERIFICATION_CODE = 'Verification code'
 const LOADING = 'Loading...'
@@ -60,11 +65,8 @@ const EmailVerificationScreen: FC = () => {
                 `Check your spam folder if you do not see it in your inbox. ` +
                 `If you have not received anything, you know who to call.`}
             </p>
-            <label>{VERIFICATION_CODE}</label>
-            <input
-              name="verificationCode"
-              type="text"
-              className="border-purple-700 border-2 ml-2"
+            <TextInput
+              label={VERIFICATION_CODE}
               onChange={(event): void =>
                 setVerificationCode(event.target.value)
               }

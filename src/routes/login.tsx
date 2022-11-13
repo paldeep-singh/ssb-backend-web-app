@@ -3,7 +3,8 @@ import {
   Logo,
   CenterContainer,
   VerticalSpacer,
-  SubmitButton
+  SubmitButton,
+  TextInput
 } from '../components'
 import { useNavigate } from 'react-router-dom'
 import { API_URL } from '../env'
@@ -102,23 +103,15 @@ const LoginScreen: FC = () => {
     <CenterContainer>
       <Logo />
       <VerticalSpacer spacing="2">
-        <label>{EMAIL}</label>
-        <input
-          name="email"
-          type="text"
-          className="border-purple-700 border-2 ml-2"
+        <TextInput
+          label={EMAIL}
           onChange={(event): void => setEmail(event.target.value)}
         />
         {accountClaimed && (
-          <>
-            <label>{PASSWORD}</label>
-            <input
-              name="password"
-              type="text"
-              className="border-purple-700 border-2 ml-2"
-              onChange={(event): void => setPassword(event.target.value)}
-            />
-          </>
+          <TextInput
+            label={PASSWORD}
+            onChange={(event): void => setPassword(event.target.value)}
+          />
         )}
         <SubmitButton
           onSubmit={accountClaimed ? onSubmitPassword : onSubmitEmail}
