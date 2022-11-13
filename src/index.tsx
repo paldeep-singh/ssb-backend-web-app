@@ -6,6 +6,7 @@ import LoginScreen from './routes/login'
 import EmailVerificationScreen from './routes/verifyEmail'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { SetPasswordScreen } from './routes/setPassword'
+import { HomeScreen } from './routes/home'
 
 export const App: FC = () => {
   const router = createBrowserRouter([
@@ -17,16 +18,12 @@ export const App: FC = () => {
     {
       path: '/set-password',
       element: <SetPasswordScreen />
+    },
+    {
+      path: '/home',
+      element: <HomeScreen />
     }
   ])
-  //   return (
-  //   <div className="App">
-  //     <Routes>
-  //       <Route path="/" element={<Home />} />
-  //       <Route path="/blog" element={<Blog />} />
-  //     </Routes>
-  //   </div>
-  // );
   return <RouterProvider router={router} />
 }
 

@@ -88,9 +88,7 @@ const LoginScreen: FC = () => {
       const session = await loginResponse.json()
 
       storeSessionCookie(session)
-      alert('Login successful')
-      // TODO: navigate to home page
-      // navigate('/home')
+      navigate('/home')
 
       return
     }
